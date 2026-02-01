@@ -2,7 +2,7 @@
 
 Essential information for AI agents working in `@fabithub/vite-plugin-ci4` - a TypeScript Vite plugin for CodeIgniter 4 integration.
 
-**Runtime**: Node.js v18+/v20+ (primary), Bun (optional) | **Module**: ES Module | **Language**: TypeScript (strict) | **Tools**: Biome + ESLint + Vitest
+**Runtime**: Node.js v18+/v20+ | **Module**: ES Module | **Language**: TypeScript (strict) | **Tools**: Biome + ESLint + Vitest
 
 ## Build, Test & Lint Commands
 
@@ -78,10 +78,12 @@ src/
 ├── config/       # Constants (constant.ts, http.ts)
 ├── handlers/     # Server & process handlers (_*.ts internal, server.ts public)
 ├── plugins/      # Vite plugins (ci4.ts, fullReload.ts)
-├── resolvers/    # Config resolvers (_*.ts internal, config.ts public)
-├── types/        # All type definitions (index.ts, global.d.ts)
-├── utils/        # Utilities (bun.ts, errors.ts, io.ts, string.ts, uri.ts, version.ts)
-├── inertia-helpers/  # Inertia.js helper functions
+├── resolvers/    # Config resolvers + page component resolver
+│   ├── _*.ts     # Internal resolvers
+│   ├── config.ts # Main config resolver
+│   └── pageComponent.ts  # Inertia.js page resolver
+├── types/        # All type definitions (index.ts)
+├── utils/        # Utilities (errors.ts, io.ts, string.ts, uri.ts, version.ts)
 └── index.ts      # Entry point
 
 tests/            # Mirrors src/ structure
@@ -117,9 +119,9 @@ throw new Error(errorMessage(Errors.MissingConfiguration))  // Good
 ## Common Patterns
 
 **Functional approach**: Pure functions over classes
-**Runtime detection**: `import { isBunRunning } from '@utils/bun'` - for optional Bun compatibility
 **Config resolution**: Break into discrete resolvers (`_resolveAliases`, `_resolveInputs`, etc.)
 **Path operations**: Use `@utils/string` (`joinPaths`, `normalizePath`) and `@utils/uri` (`buildDevServerUrl`)
+**I/O operations**: All file operations use Node.js `fs/promises` API
 
 ## Critical Rules
 
@@ -131,10 +133,11 @@ throw new Error(errorMessage(Errors.MissingConfiguration))  // Good
 6. Write tests for new features/fixes
 7. No namespaces (use ES modules)
 8. Prefer `as const` for constant literals
+9. All I/O operations must use Node.js APIs (no Bun)
 
 ## Git Commit Scopes
 
-`deps`, `src`, `docs`, `build`, `utils`, `config`, `handlers`, `template`, `inertia-helpers`
+`deps`, `src`, `docs`, `build`, `utils`, `config`, `handlers`, `resolvers`, `template`
 
 ## Key Dependencies
 
@@ -148,16 +151,16 @@ This plugin is compatible with Vite 7.x. Key changes from previous versions:
 - All imports use `vite` module directly
 - Plugin API fully compatible with latest Vite changes
 
-## Inertia.js Helpers
+## Page Component Resolver
 
-The plugin includes `resolvePageComponent` helper for dynamic page resolution:
+The plugin includes `resolvePageComponent` in `src/resolvers/pageComponent.ts` for dynamic page resolution:
 
 ```typescript
-import { resolvePageComponent } from '@fabithub/vite-plugin-ci4/inertia-helpers'
+import { resolvePageComponent } from '@fabithub/vite-plugin-ci4/resolvers'
 
 const component = await resolvePageComponent('Home/Index', import.meta.glob('./Pages/**/*.tsx'))
 ```
 
 ---
 
-**Core values**: Type safety, functional patterns, clean organization, comprehensive testing, Vite-first approach for CodeIgniter 4.
+**Core values**: Type safety, functional patterns, clean organization, comprehensive testing, Node.js-first approach for Vite + CodeIgniter 4.

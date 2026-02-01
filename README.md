@@ -24,8 +24,9 @@ This Vite plugin allows seamless integration of [Vite JS](https://vitejs.dev/) w
 - Efficient production builds with automatic asset versioning.
 - SSR (Server-Side Rendering) support.
 - Full page reload on file changes.
-- Inertia.js helpers for dynamic page resolution.
+- Inertia.js page component resolver for dynamic page loading.
 - Compatible with Vite 7.x and CodeIgniter 4.
+- Built with Node.js for maximum compatibility.
 
 ## Installation
 
@@ -123,15 +124,15 @@ public/hot
 | `refresh`            | boolean / string / string[] / RefreshConfig / RefreshConfig[] | false                      | Configuration for performing full page refresh on blade (or other) file changes. [see more](https://github.com/ElMassimo/vite-plugin-full-reload) |
 | `transformOnServe`   | (code: string, url: string)=>string                           |                            | Transform the code while serving.                                                                                                                 |
 
-## Inertia.js Helper
+## Inertia.js Page Component Resolver
 
-This plugin includes a helper function for Inertia.js page resolution, inspired by Laravel's implementation.
+This plugin includes a resolver function for Inertia.js page components, inspired by Laravel's implementation. This allows you to dynamically resolve page components based on paths.
 
 ### Usage
 
 ```typescript
-// Import the helper
-import { resolvePageComponent } from '@fabithub/vite-plugin-ci4/inertia-helpers';
+// Import the resolver
+import { resolvePageComponent } from '@fabithub/vite-plugin-ci4/resolvers';
 
 // Use with Vite's glob import
 const pages = import.meta.glob('./Pages/**/*.tsx');
@@ -139,18 +140,18 @@ const pages = import.meta.glob('./Pages/**/*.tsx');
 // Resolve a page component
 const component = await resolvePageComponent('Home/Index', pages);
 
-// Or with multiple possible paths
+// Or with multiple possible paths (fallback support)
 const component = await resolvePageComponent(
   ['Auth/Login', 'Login'],
   pages
 );
 ```
 
-### TypeScript Example
+### TypeScript Example with Inertia.js
 
 ```typescript
 import { createInertiaApp } from '@inertiajs/react';
-import { resolvePageComponent } from '@fabithub/vite-plugin-ci4/inertia-helpers';
+import { resolvePageComponent } from '@fabithub/vite-plugin-ci4/resolvers';
 
 createInertiaApp({
   resolve: (name) => resolvePageComponent(
@@ -158,7 +159,27 @@ createInertiaApp({
     import.meta.glob('./Pages/**/*.tsx')
   ),
   setup({ el, App, props }) {
-    // Your app setup
+    createRoot(el).render(<App {...props} />);
+  },
+});
+```
+
+### Vue Example
+
+```typescript
+import { createInertiaApp } from '@inertiajs/vue3';
+import { resolvePageComponent } from '@fabithub/vite-plugin-ci4/resolvers';
+import { createApp, h } from 'vue';
+
+createInertiaApp({
+  resolve: (name) => resolvePageComponent(
+    `./Pages/${name}.vue`,
+    import.meta.glob('./Pages/**/*.vue')
+  ),
+  setup({ el, App, props, plugin }) {
+    createApp({ render: () => h(App, props) })
+      .use(plugin)
+      .mount(el);
   },
 });
 ```
@@ -219,8 +240,9 @@ export default defineConfig({
 ## TODO
 
 - [x] Basic Tests.
-- [x] Inertia.js helpers
+- [x] Inertia.js page component resolver
 - [x] Updated to Vite 7.x
+- [x] Migrated to Node.js with Vitest
 - [ ] Better Documentation.
 - [ ] Tests for all files & functions.
 - [ ] Many More.
@@ -237,4 +259,4 @@ Released under [MIT](/LICENSE.md) by [@fab-it-hub](https://github.com/fab-it-hub
 
 ---
 
-**Note**: This project now uses Node.js as the primary runtime for better compatibility and maintainability. Bun is still supported as an optional runtime.
+**Built with Node.js** - This project uses Node.js as the primary runtime for maximum compatibility and maintainability.
