@@ -23,15 +23,15 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 			sourcemap: false
 		})
 
-		// Build inertia helpers
+		// Build page component resolver
 		await build({
-			entryPoints: ['./src/inertia-helpers/index.ts'],
+			entryPoints: ['./src/resolvers/pageComponent.ts'],
 			bundle: true,
 			minify: true,
 			format: 'esm',
 			platform: 'node',
 			target: ['node18', 'node20'],
-			outdir: './dist/inertia-helpers',
+			outdir: './dist/resolvers',
 			external: [],
 			sourcemap: false
 		})

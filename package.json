@@ -27,10 +27,10 @@
       "import": "./dist/index.js",
       "default": "./dist/index.js"
     },
-    "./inertia-helpers": {
-      "types": "./dist/inertia-helpers/index.d.ts",
-      "import": "./dist/inertia-helpers/index.js",
-      "default": "./dist/inertia-helpers/index.js"
+    "./resolvers": {
+      "types": "./dist/resolvers/pageComponent.d.ts",
+      "import": "./dist/resolvers/pageComponent.js",
+      "default": "./dist/resolvers/pageComponent.js"
     }
   },
   "files": ["dist"],
