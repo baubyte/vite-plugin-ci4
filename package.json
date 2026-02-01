@@ -3,10 +3,10 @@
   "version": "1.2.0",
   "description": "Vite Plugin for CodeIgniter 4 integration.",
   "keywords": ["vite", "ci4", "codeigniter", "inertia", "plugin"],
-  "homepage": "https://github.com/fab-it-hub/vite-plugin-ci4",
+  "homepage": "https://github.com/baubyte/vite-plugin-ci4",
   "repository": {
     "type": "git",
-    "url": "https://github.com/fab-it-hub/vite-plugin-ci4"
+    "url": "https://github.com/baubyte/vite-plugin-ci4"
   },
   "license": "MIT",
   "author": {
@@ -35,6 +35,7 @@
   },
   "files": ["dist"],
   "scripts": {
+    "prepare": "npm run build",
     "test": "vitest run",
     "test:watch": "vitest",
     "lint": "eslint --ext .ts ./src ./tests",

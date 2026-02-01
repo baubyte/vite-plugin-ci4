@@ -3,12 +3,12 @@
 > Vite Plugin for CodeIgniter 4 integration. Inspired by Laravel's Vite Plugin.
 
 
-[![fab-it-hub - vite-plugin-ci4](https://img.shields.io/badge/%40fab--it--hub-vite_plugin_ci4-blue?style=for-the-badge&logo=github)](https://github.com/fab-it-hub/vite-plugin-ci4 "Go to GitHub repo")
-![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/fab-it-hub/vite-plugin-ci4?style=for-the-badge&logo=github)
-[![GitHub Repo stars](https://img.shields.io/github/stars/fab-it-hub/vite-plugin-ci4?style=for-the-badge&logo=github)](https://github.com/fab-it-hub/vite-plugin-ci4)
-[![GitHub forks](https://img.shields.io/github/forks/fab-it-hub/vite-plugin-ci4?style=for-the-badge&logo=github&color=pink)](https://github.com/fab-it-hub/vite-plugin-ci4)
-[![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/fab-it-hub/vite-plugin-ci4/tests.yml?style=for-the-badge&logo=github%20actions)](https://github.com/fab-it-hub/vite-plugin-ci4/actions/workflows/tests.yml)
-[![GitHub Release](https://img.shields.io/github/v/release/fab-it-hub/vite-plugin-ci4?sort=date&display_name=release&style=for-the-badge)](https://www.npmjs.com/package/@fabithub/vite-plugin-ci4)
+[![baubyte - vite-plugin-ci4](https://img.shields.io/badge/baubyte-vite_plugin_ci4-blue?style=for-the-badge&logo=github)](https://github.com/baubyte/vite-plugin-ci4 "Go to GitHub repo")
+![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/baubyte/vite-plugin-ci4?style=for-the-badge&logo=github)
+[![GitHub Repo stars](https://img.shields.io/github/stars/baubyte/vite-plugin-ci4?style=for-the-badge&logo=github)](https://github.com/baubyte/vite-plugin-ci4)
+[![GitHub forks](https://img.shields.io/github/forks/baubyte/vite-plugin-ci4?style=for-the-badge&logo=github&color=pink)](https://github.com/baubyte/vite-plugin-ci4)
+[![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/baubyte/vite-plugin-ci4/tests.yml?style=for-the-badge&logo=github%20actions)](https://github.com/baubyte/vite-plugin-ci4/actions/workflows/tests.yml)
+[![GitHub Release](https://img.shields.io/github/v/release/baubyte/vite-plugin-ci4?sort=date&display_name=release&style=for-the-badge)](https://www.npmjs.com/package/@fabithub/vite-plugin-ci4)
 [![NPM Downloads](https://img.shields.io/npm/dy/%40fabithub%2Fvite-plugin-ci4?style=for-the-badge&logo=npm)](https://www.npmjs.com/package/@fabithub/vite-plugin-ci4)
 ![GitHub License](https://img.shields.io/github/license/fab-it-hub/vite-plugin-ci4?style=for-the-badge&logo=github)
 
@@ -49,24 +49,26 @@ You can also install directly from the GitHub repository:
 
 ```bash
 # NPM
-npm install --save-dev github:fab-it-hub/vite-plugin-ci4
+npm install --save-dev github:baubyte/vite-plugin-ci4
 
 # Yarn
-yarn add --dev github:fab-it-hub/vite-plugin-ci4
+yarn add --dev github:baubyte/vite-plugin-ci4
 
 # PNPM
-pnpm add -D github:fab-it-hub/vite-plugin-ci4
+pnpm add -D github:baubyte/vite-plugin-ci4
 ```
 
 To install a specific version or branch:
 
 ```bash
 # Specific version
-npm install --save-dev github:fab-it-hub/vite-plugin-ci4#v1.2.0
+npm install --save-dev github:baubyte/vite-plugin-ci4#v1.2.0
 
 # Specific branch
-npm install --save-dev github:fab-it-hub/vite-plugin-ci4#main
+npm install --save-dev github:baubyte/vite-plugin-ci4#main
 ```
+
+> **Note**: When installing from GitHub, the package will automatically build during installation using the `prepare` script.
 
 ## Usage
 
