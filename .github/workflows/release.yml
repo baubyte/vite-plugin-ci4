@@ -68,8 +68,8 @@ jobs:
               });
             }
             
-            // Update files array to include all root files instead of dist
-            pkg.files = ['.'];
+            // Update files array to explicitly list all directories/files
+            pkg.files = ['*.js', '*.d.ts', '*.html', 'config', 'handlers', 'plugins', 'resolvers', 'types', 'utils'];
             
             fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2) + '\n');
           "
