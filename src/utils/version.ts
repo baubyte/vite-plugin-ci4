@@ -5,6 +5,7 @@ import type { JsonVersion } from '../types/index.js'
 
 import { Errors, errorMessages } from './errors'
 import { readFileAsJson } from './io'
+import { getPluginPackageJsonPath } from './uri'
 
 export const getFrameworkVersion = async (): Promise<JsonVersion> => {
 	const content = await readFileAsJson(appConfig.composerPath)
@@ -27,4 +28,4 @@ export const getFrameworkVersion = async (): Promise<JsonVersion> => {
 }
 
 export const getPluginVersion = async (): Promise<JsonVersion> =>
-	await readFileAsJson(appConfig.packageJsonPath)
+	await readFileAsJson(getPluginPackageJsonPath())

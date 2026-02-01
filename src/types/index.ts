@@ -35,7 +35,6 @@ export interface AppConfig {
 
 	composerPath: string
 	serverListener: string
-	packageJsonPath: string
 
 	assets: string
 	placeholder: string
