@@ -49,6 +49,31 @@ jobs:
           mv dist/* .
           rmdir dist
           
+          # Update package.json to fix paths (remove /dist prefix)
+          node -e "
+            const fs = require('fs');
+            const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+            
+            // Update main/module/types paths
+            pkg.main = pkg.main.replace('./dist/', './');
+            pkg.module = pkg.module.replace('./dist/', './');
+            pkg.types = pkg.types.replace('./dist/', './');
+            
+            // Update exports paths
+            if (pkg.exports) {
+              Object.keys(pkg.exports).forEach(key => {
+                Object.keys(pkg.exports[key]).forEach(type => {
+                  pkg.exports[key][type] = pkg.exports[key][type].replace('./dist/', './');
+                });
+              });
+            }
+            
+            // Update files array to include all root files instead of dist
+            pkg.files = ['.'];
+            
+            fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2) + '\n');
+          "
+          
           # Add release files
           git add -A
           git commit -m "Release ${{ github.ref_name }}" || echo "No changes to commit"
