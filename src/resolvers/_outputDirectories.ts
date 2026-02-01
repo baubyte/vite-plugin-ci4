@@ -1,7 +1,7 @@
 import type { UserConfig } from 'vite'
 
 import { joinPaths } from '@utils/string'
-import type { PluginConfig } from 'src/types'
+import type { PluginConfig } from '../types/index.js'
 
 export const _resolveOutDir = (
 	config: UserConfig,

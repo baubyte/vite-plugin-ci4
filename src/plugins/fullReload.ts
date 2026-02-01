@@ -1,7 +1,7 @@
 import type { PluginOption } from 'vite'
 import fullReload from 'vite-plugin-full-reload'
 
-import type { PluginConfig, RefreshConfig } from 'src/types'
+import type { PluginConfig, RefreshConfig } from '../types/index.js'
 
 export const resolveFullReloadConfig = ({
 	refresh: config

@@ -1,7 +1,7 @@
 import type { AddressInfo } from 'net'
 import { fileURLToPath } from 'url'
 
-import type { IsAddressInfo } from 'src/types'
+import type { IsAddressInfo } from '../types/index.js'
 
 export const isAddressInfo: IsAddressInfo = (x): x is AddressInfo => typeof x === 'object'
 

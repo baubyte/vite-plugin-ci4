@@ -1,5 +1,5 @@
 import { access, constants, readFile, unlink, writeFile } from 'node:fs/promises'
-import type { ComposerJson } from 'src/types'
+import type { ComposerJson } from '../types/index.js'
 import { normalizePath } from 'vite'
 
 export const isFileExists = async (path: string): Promise<boolean> => {

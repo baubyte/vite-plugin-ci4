@@ -1,5 +1,5 @@
 import { addSlash } from '@utils/uri'
-import type { PluginConfig } from 'src/types'
+import type { PluginConfig } from '../types/index.js'
 import type { ConfigEnv, UserConfig } from 'vite'
 
 export const _resolveBaseUrl = (

@@ -3,7 +3,7 @@ import type { ResolvedConfig } from 'vite'
 import { appConfig } from '@config/constant'
 import { handleConfigureServer } from '@handlers/server'
 import { configResolver } from '@resolvers/config'
-import type { Ci4Plugin, PluginConfig } from 'src/types'
+import type { Ci4Plugin, PluginConfig } from '../types/index.js'
 
 export const ci4 = (_config: Required<PluginConfig>): Ci4Plugin => {
 	let devServerUrl = ''

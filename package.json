@@ -2,7 +2,13 @@
   "name": "@fabithub/vite-plugin-ci4",
   "version": "1.2.0",
   "description": "Vite Plugin for CodeIgniter 4 integration.",
-  "keywords": ["vite", "ci4", "codeigniter", "inertia", "plugin"],
+  "keywords": [
+    "vite",
+    "ci4",
+    "codeigniter",
+    "inertia",
+    "plugin"
+  ],
   "homepage": "https://github.com/baubyte/vite-plugin-ci4",
   "repository": {
     "type": "git",
@@ -33,7 +39,9 @@
       "default": "./dist/resolvers/pageComponent.js"
     }
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "postinstall": "node scripts/postinstall.js",
     "test": "vitest run",
@@ -42,7 +50,7 @@
     "format": "biome format --write .",
     "format:check": "biome check --write .",
     "prebuild": "rm -rf dist",
-    "build": "tsc --emitDeclarationOnly --project tsconfig.build.json",
+    "build": "tsc --emitDeclarationOnly --project tsconfig.build.json && tsc-alias -p tsconfig.build.json",
     "postbuild": "node build.config.js",
     "typecheck": "tsc --noEmit"
   },
@@ -57,6 +65,7 @@
     "@typescript-eslint/parser": "^8.23.0",
     "esbuild": "^0.25.2",
     "html-minifier-terser": "^7.2.0",
+    "tsc-alias": "^1.8.16",
     "typescript": "^5.9.3",
     "vite": "^7.3.1",
     "vitest": "^3.2.3"

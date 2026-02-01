@@ -2,7 +2,7 @@ import { appConfig } from '@config/constant'
 import { Errors, errorMessages } from '@utils/errors'
 import { joinPaths } from '@utils/string'
 
-import type { PluginConfig } from 'src/types'
+import type { PluginConfig } from '../types/index.js'
 
 export const resolvePluginConfig = (
 	config: string | string[] | PluginConfig

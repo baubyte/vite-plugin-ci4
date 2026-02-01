@@ -1,5 +1,5 @@
 import { getCurrentPath } from '@utils/uri'
-import type { AppConfig } from 'src/types'
+import type { AppConfig } from '../types/index.js'
 
 export const appConfig: AppConfig = {
 	hotFile: 'hot',

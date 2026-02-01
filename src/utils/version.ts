@@ -1,7 +1,7 @@
 import { lt } from 'semver'
 
 import { appConfig } from '@config/constant'
-import type { JsonVersion } from 'src/types'
+import type { JsonVersion } from '../types/index.js'
 
 import { Errors, errorMessages } from './errors'
 import { readFileAsJson } from './io'

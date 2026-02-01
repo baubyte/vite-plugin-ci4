@@ -1,5 +1,5 @@
 import { appConfig } from '@config/constant'
-import type { PluginConfig } from 'src/types'
+import type { PluginConfig } from '../types/index.js'
 
 import type { ConfigEnv, UserConfig } from 'vite'
 import { loadEnv } from 'vite'
