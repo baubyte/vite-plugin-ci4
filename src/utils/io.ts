@@ -1,18 +1,12 @@
 import { access, constants, readFile, unlink, writeFile } from 'node:fs/promises'
 import type { ComposerJson } from 'src/types'
 import { normalizePath } from 'vite'
-import { isBunRunning } from './bun'
 
 export const isFileExists = async (path: string): Promise<boolean> => {
 	try {
-		// Check if we are running in Bun environment.
-		if (isBunRunning() && typeof Bun !== 'undefined') {
-			return await Bun.file(path).exists() // Use Bun's `file` API to check if the file exists.
-		}
-		// Use Node.js's `access` API to check if the file exists.
-		return typeof (await access(path, constants.F_OK)) === 'undefined'
+		await access(path, constants.F_OK)
+		return true
 	} catch (_error: unknown) {
-		// If any error occurs, return false.
 		return false
 	}
 }
@@ -27,14 +21,7 @@ export const readFileAsString = async (filePath: string): Promise<string> => {
 	}
 
 	// Read the file contents.
-	const content =
-		isBunRunning() && typeof Bun !== 'undefined'
-			? await Bun.file(path).text()
-			: await readFile(path, { encoding: 'utf8' })
-
-	if (typeof content !== 'string') {
-		return JSON.stringify(content)
-	}
+	const content = await readFile(path, { encoding: 'utf8' })
 
 	return content
 }
@@ -58,12 +45,8 @@ export const writingFile = async (filePath: string, content: string): Promise<bo
 	const path = normalizePath(filePath)
 
 	try {
-		// Check if we are running in the Bun environment.
-		if (isBunRunning() && typeof Bun !== 'undefined') {
-			return (await Bun.write(path, content)) > 0 // Return true if the number of bytes written is greater than 0.
-		}
-		// Return true, as it does not return a value.
-		return typeof (await writeFile(path, content)) === 'undefined'
+		await writeFile(path, content)
+		return true
 	} catch (_error: unknown) {
 		// If an error occurred while writing the file, return false.
 		return false
@@ -76,9 +59,8 @@ export const removeFile = async (filepath: string): Promise<boolean> => {
 
 	// Attempt to remove the file.
 	try {
-		// Use the `rm` function from the `fs/promises` library to remove the file.
-		// The `force` option is used to ensure that the file is removed, even if it is read-only.
-		return typeof (await unlink(path)) === 'undefined'
+		await unlink(path)
+		return true
 	} catch (_error: unknown) {
 		// If an error occurred while attempting to remove the file, return `false`.
 		return false

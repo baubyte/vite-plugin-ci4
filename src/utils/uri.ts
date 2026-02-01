@@ -2,7 +2,6 @@ import type { AddressInfo } from 'net'
 import { fileURLToPath } from 'url'
 
 import type { IsAddressInfo } from 'src/types'
-import { isBunRunning } from './bun'
 
 export const isAddressInfo: IsAddressInfo = (x): x is AddressInfo => typeof x === 'object'
 
@@ -19,9 +18,6 @@ export const isIpv6 = (address: AddressInfo): boolean => {
 
 export const getCurrentPath = (): string => {
 	const path = new URL('.', import.meta.url)
-	if (isBunRunning() && typeof Bun !== 'undefined') {
-		return Bun.fileURLToPath(path.toString())
-	}
 	return fileURLToPath(path)
 }
 
