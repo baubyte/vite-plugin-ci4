@@ -30,45 +30,38 @@ This Vite plugin allows seamless integration of [Vite JS](https://vitejs.dev/) w
 
 ## Installation
 
-### From NPM Registry
+### From GitHub Release Branch
+
+Install from the `release` branch which contains only the compiled files:
 
 ```bash
 # NPM
-npm install --save-dev @fabithub/vite-plugin-ci4
+npm install --save-dev baubyte/vite-plugin-ci4#release
 
 # Yarn
-yarn add --dev @fabithub/vite-plugin-ci4
+yarn add --dev baubyte/vite-plugin-ci4#release
 
 # PNPM
-pnpm add -D @fabithub/vite-plugin-ci4
+pnpm add -D baubyte/vite-plugin-ci4#release
 ```
 
-### From GitHub Repository
+### Install Specific Version
 
-You can also install directly from the GitHub repository:
+To install a specific version, use the version tag:
 
 ```bash
-# NPM
-npm install --save-dev github:baubyte/vite-plugin-ci4
-
-# Yarn
-yarn add --dev github:baubyte/vite-plugin-ci4
-
-# PNPM
-pnpm add -D github:baubyte/vite-plugin-ci4
+# Install specific version  
+npm install --save-dev baubyte/vite-plugin-ci4#v1.3.0
 ```
 
-To install a specific version or branch:
-
-```bash
-# Specific version
-npm install --save-dev github:baubyte/vite-plugin-ci4#v1.2.0
-
-# Specific branch
-npm install --save-dev github:baubyte/vite-plugin-ci4#main
-```
-
-> **Note**: When installing from GitHub, the package will automatically build during installation using the `postinstall` script. This works with npm, yarn, and pnpm.
+> **How it works**: When a version tag is pushed (e.g., `v1.3.0`), GitHub Actions automatically:
+> - Runs tests and builds the package
+> - Updates the `release` branch with only the compiled `dist/` files, `package.json`, `README.md`, and `LICENSE`
+> - Creates a GitHub release
+>
+> The `release` branch contains ONLY what users need, keeping downloads small and fast.
+>
+> **Note**: Do NOT install from the `main` branch as it does not include built files.
 
 ## Usage
 
