@@ -68,7 +68,7 @@ npm install --save-dev github:baubyte/vite-plugin-ci4#v1.2.0
 npm install --save-dev github:baubyte/vite-plugin-ci4#main
 ```
 
-> **Note**: When installing from GitHub, the package will automatically build during installation using the `prepare` script.
+> **Note**: When installing from GitHub, the package will automatically build during installation using the `postinstall` script. This works with npm, yarn, and pnpm.
 
 ## Usage
 

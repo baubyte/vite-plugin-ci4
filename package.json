@@ -35,7 +35,7 @@
   },
   "files": ["dist"],
   "scripts": {
-    "prepare": "node scripts/prepare.js",
+    "postinstall": "node scripts/postinstall.js",
     "test": "vitest run",
     "test:watch": "vitest",
     "lint": "eslint --ext .ts ./src ./tests",
