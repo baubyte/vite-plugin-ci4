@@ -17,7 +17,7 @@
     "noImplicitAny": true,
     "useUnknownInCatchVariables": true,
     "noPropertyAccessFromIndexSignature": true,
-    "types": ["bun-types"],
+    "types": ["node", "vitest/globals"],
     "outDir": "dist",
     "baseUrl": ".",
     "paths": {

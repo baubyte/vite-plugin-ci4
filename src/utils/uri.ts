@@ -19,7 +19,10 @@ export const isIpv6 = (address: AddressInfo): boolean => {
 
 export const getCurrentPath = (): string => {
 	const path = new URL('.', import.meta.url)
-	return isBunRunning() ? Bun.fileURLToPath(path.toString()) : fileURLToPath(path)
+	if (isBunRunning() && typeof Bun !== 'undefined') {
+		return Bun.fileURLToPath(path.toString())
+	}
+	return fileURLToPath(path)
 }
 
 export const addSlash = (path: string): string => path.replace(/\/?$/, '/')

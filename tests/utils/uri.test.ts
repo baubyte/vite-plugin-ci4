@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'bun:test'
+import { describe, expect, it } from 'vitest'
 import type { AddressInfo } from 'net'
 
 import { addSlash, getCurrentPath, isIpv6 } from '@utils/uri'

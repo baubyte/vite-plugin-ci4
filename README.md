@@ -9,7 +9,7 @@
 [![GitHub forks](https://img.shields.io/github/forks/fab-it-hub/vite-plugin-ci4?style=for-the-badge&logo=github&color=pink)](https://github.com/fab-it-hub/vite-plugin-ci4)
 [![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/fab-it-hub/vite-plugin-ci4/tests.yml?style=for-the-badge&logo=github%20actions)](https://github.com/fab-it-hub/vite-plugin-ci4/actions/workflows/tests.yml)
 [![GitHub Release](https://img.shields.io/github/v/release/fab-it-hub/vite-plugin-ci4?sort=date&display_name=release&style=for-the-badge)](https://www.npmjs.com/package/@fabithub/vite-plugin-ci4)
-[![NPM Downloads](https://img.shields.io/npm/dy/%40fabithub%2Fvite-plugin-ci4?style=for-the-badge&logo=npm)](https://www.npmjs.com/package/@fabithub/vite-plugin-ci4)![Static Badge](https://img.shields.io/badge/made_with_Bun-bun?style=for-the-badge&logo=bun&logoColor=%23fbf0df&color=%23000)
+[![NPM Downloads](https://img.shields.io/npm/dy/%40fabithub%2Fvite-plugin-ci4?style=for-the-badge&logo=npm)](https://www.npmjs.com/package/@fabithub/vite-plugin-ci4)
 ![GitHub License](https://img.shields.io/github/license/fab-it-hub/vite-plugin-ci4?style=for-the-badge&logo=github)
 
 
@@ -20,38 +20,56 @@ This Vite plugin allows seamless integration of [Vite JS](https://vitejs.dev/) w
 ## Features
 
 - CodeIgniter 4 support for Vite.
-- Streamlined development workflow.
-- Efficient production builds.
+- Streamlined development workflow with Hot Module Replacement (HMR).
+- Efficient production builds with automatic asset versioning.
+- SSR (Server-Side Rendering) support.
+- Full page reload on file changes.
+- Inertia.js helpers for dynamic page resolution.
+- Compatible with Vite 7.x and CodeIgniter 4.
 
 ## Installation
 
-### NPM
+### From NPM Registry
 
 ```bash
+# NPM
 npm install --save-dev @fabithub/vite-plugin-ci4
-```
 
-### Yarn
-
-```bash
+# Yarn
 yarn add --dev @fabithub/vite-plugin-ci4
-```
 
-### PNPM
-
-```bash
+# PNPM
 pnpm add -D @fabithub/vite-plugin-ci4
 ```
 
-### Bun
+### From GitHub Repository
+
+You can also install directly from the GitHub repository:
 
 ```bash
-bun add -d @fabithub/vite-plugin-ci4
+# NPM
+npm install --save-dev github:fab-it-hub/vite-plugin-ci4
+
+# Yarn
+yarn add --dev github:fab-it-hub/vite-plugin-ci4
+
+# PNPM
+pnpm add -D github:fab-it-hub/vite-plugin-ci4
+```
+
+To install a specific version or branch:
+
+```bash
+# Specific version
+npm install --save-dev github:fab-it-hub/vite-plugin-ci4#v1.2.0
+
+# Specific branch
+npm install --save-dev github:fab-it-hub/vite-plugin-ci4#main
 ```
 
 ## Usage
 
-In your Vite configuration file (usually `vite.config.js`), add the plugin:
+In your Vite configuration file (usually `vite.config.js` or `vite.config.ts`), add the plugin:
 
 ```javascript
 // vite.config.js
@@ -85,7 +103,7 @@ export default {
 
 ### Git Ignore
 
-The `hot` file is created and deleted when the vite dev server is run, making it safe to ignore it. You can change the `hot` file path by update the config `hotFile` by default it's `public/hot` and add the path in the `.gitignore`.
+The `hot` file is created and deleted when the vite dev server is run, making it safe to ignore it. You can change the `hot` file path by updating the config `hotFile` (by default it's `public/hot`) and add the path in the `.gitignore`.
 
 ```dockerfile
 # @fabithub/vite-plugin-ci4
@@ -105,7 +123,49 @@ public/hot
 | `refresh`            | boolean / string / string[] / RefreshConfig / RefreshConfig[] | false                      | Configuration for performing full page refresh on blade (or other) file changes. [see more](https://github.com/ElMassimo/vite-plugin-full-reload) |
 | `transformOnServe`   | (code: string, url: string)=>string                           |                            | Transform the code while serving.                                                                                                                 |
 
+## Inertia.js Helper
+
+This plugin includes a helper function for Inertia.js page resolution, inspired by Laravel's implementation.
+
+### Usage
+
+```typescript
+// Import the helper
+import { resolvePageComponent } from '@fabithub/vite-plugin-ci4/inertia-helpers';
+
+// Use with Vite's glob import
+const pages = import.meta.glob('./Pages/**/*.tsx');
+
+// Resolve a page component
+const component = await resolvePageComponent('Home/Index', pages);
+
+// Or with multiple possible paths
+const component = await resolvePageComponent(
+  ['Auth/Login', 'Login'],
+  pages
+);
+```
+
+### TypeScript Example
+
+```typescript
+import { createInertiaApp } from '@inertiajs/react';
+import { resolvePageComponent } from '@fabithub/vite-plugin-ci4/inertia-helpers';
+
+createInertiaApp({
+  resolve: (name) => resolvePageComponent(
+    `./Pages/${name}.tsx`,
+    import.meta.glob('./Pages/**/*.tsx')
+  ),
+  setup({ el, App, props }) {
+    // Your app setup
+  },
+});
+```
+
 ## Example
+
+### Basic Configuration
 
 ```typescript
 // vite.config.ts
@@ -118,14 +178,49 @@ export default defineConfig(({ mode }): UserConfig => {
   const env = loadEnv(mode, process.cwd());
 
   return {
-    plugins: [react(), ci4(`${env.VITE_RESOURCES_DIR}/${env.VITE_ENTRY_FILE}`)]
+    plugins: [
+      react(), 
+      ci4(`${env.VITE_RESOURCES_DIR}/${env.VITE_ENTRY_FILE}`)
+    ]
   };
 });
 ```
 
+### Advanced Configuration with SSR
+
+```typescript
+// vite.config.ts
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import ci4 from "@fabithub/vite-plugin-ci4";
+
+export default defineConfig({
+  plugins: [
+    react(),
+    ci4({
+      input: ["resources/js/app.tsx", "resources/css/app.css"],
+      ssr: "resources/js/ssr.tsx",
+      refresh: [
+        "app/Views/**",
+        "modules/**/Views/**",
+        "app/Config/Routes.php",
+      ],
+    }),
+  ],
+});
+```
+
+## Compatibility
+
+- **Vite**: 6.x, 7.x
+- **CodeIgniter**: 4.1.5+
+- **Node.js**: 18.x, 20.x+
+
 ## TODO
 
 - [x] Basic Tests.
+- [x] Inertia.js helpers
+- [x] Updated to Vite 7.x
 - [ ] Better Documentation.
 - [ ] Tests for all files & functions.
 - [ ] Many More.
@@ -134,8 +229,12 @@ export default defineConfig(({ mode }): UserConfig => {
 
 This plugin is inspired by [Laravel's vite-plugin](https://github.com/laravel/vite-plugin) by [Laravel](https://laravel.com/).
 
+Special thanks to the original authors and contributors of [@fabithub/vite-plugin-ci4](https://github.com/fab-it-hub/vite-plugin-ci4).
+
 ## License
 
 Released under [MIT](/LICENSE.md) by [@fab-it-hub](https://github.com/fab-it-hub).
 
-> This project was created using `bun init` in bun v1.0.25. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
+---
+
+**Note**: This project now uses Node.js as the primary runtime for better compatibility and maintainability. Bun is still supported as an optional runtime.

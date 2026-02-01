@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'bun:test'
+import { describe, expect, it } from 'vitest'
 
 import ci4 from 'src'
 import type { Ci4Plugin } from 'src/types'

@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'bun:test'
+import { describe, expect, it } from 'vitest'
 import { join } from 'path'
 
 export const joinPaths = (...paths: string[]): string => join(...paths)

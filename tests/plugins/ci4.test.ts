@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'bun:test'
+import { describe, expect, it } from 'vitest'
 import { ci4 } from '@plugins/ci4'
 
 describe('ci4 plugin', () => {

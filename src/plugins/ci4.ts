@@ -6,7 +6,7 @@ import { configResolver } from '@resolvers/config'
 import type { Ci4Plugin, PluginConfig } from 'src/types'
 
 export const ci4 = (_config: Required<PluginConfig>): Ci4Plugin => {
-	let devServerUrl: string
+	let devServerUrl = ''
 	let config: ResolvedConfig
 
 	return {
@@ -17,12 +17,26 @@ export const ci4 = (_config: Required<PluginConfig>): Ci4Plugin => {
 			config = resolveConfig
 		},
 		transform: (code) => {
-			if (config.command === 'serve') {
+			if (config.command === 'serve' && devServerUrl) {
 				code = code.replace(/__ci4_vite_placeholder__/g, devServerUrl)
 
-				return _config.transformOnServe(code, devServerUrl)
+				if (_config.transformOnServe) {
+					return _config.transformOnServe(code, devServerUrl)
+				}
 			}
 		},
-		configureServer: handleConfigureServer
+		configureServer: (server) => {
+			// Update devServerUrl when server starts
+			server.httpServer?.once('listening', () => {
+				const address = server.httpServer?.address()
+				if (address && typeof address === 'object') {
+					const protocol = config.server.https ? 'https' : 'http'
+					const host = config.server.host || 'localhost'
+					devServerUrl = `${protocol}://${host}:${address.port}`
+				}
+			})
+			
+			return handleConfigureServer(server)
+		}
 	}
 }

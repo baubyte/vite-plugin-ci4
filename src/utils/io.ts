@@ -6,9 +6,11 @@ import { isBunRunning } from './bun'
 export const isFileExists = async (path: string): Promise<boolean> => {
 	try {
 		// Check if we are running in Bun environment.
-		return isBunRunning()
-			? await Bun.file(path).exists() // Use Bun's `file` API to check if the file exists.
-			: typeof (await access(path, constants.F_OK)) === 'undefined' // Use Node.js's `access` API to check if the file exists.
+		if (isBunRunning() && typeof Bun !== 'undefined') {
+			return await Bun.file(path).exists() // Use Bun's `file` API to check if the file exists.
+		}
+		// Use Node.js's `access` API to check if the file exists.
+		return typeof (await access(path, constants.F_OK)) === 'undefined'
 	} catch (_error: unknown) {
 		// If any error occurs, return false.
 		return false
@@ -25,9 +27,10 @@ export const readFileAsString = async (filePath: string): Promise<string> => {
 	}
 
 	// Read the file contents.
-	const content = isBunRunning()
-		? await Bun.file(path).text()
-		: await readFile(path, { encoding: 'utf8' })
+	const content =
+		isBunRunning() && typeof Bun !== 'undefined'
+			? await Bun.file(path).text()
+			: await readFile(path, { encoding: 'utf8' })
 
 	if (typeof content !== 'string') {
 		return JSON.stringify(content)
@@ -56,9 +59,11 @@ export const writingFile = async (filePath: string, content: string): Promise<bo
 
 	try {
 		// Check if we are running in the Bun environment.
-		return isBunRunning()
-			? (await Bun.write(path, content)) > 0 // Return true if the number of bytes written is greater than 0.
-			: typeof (await writeFile(path, content)) === 'undefined' // Return true, as it does not return a value.
+		if (isBunRunning() && typeof Bun !== 'undefined') {
+			return (await Bun.write(path, content)) > 0 // Return true if the number of bytes written is greater than 0.
+		}
+		// Return true, as it does not return a value.
+		return typeof (await writeFile(path, content)) === 'undefined'
 	} catch (_error: unknown) {
 		// If an error occurred while writing the file, return false.
 		return false
