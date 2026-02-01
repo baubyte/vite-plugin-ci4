@@ -23,13 +23,13 @@ export const getCurrentPath = (): string => {
 }
 
 export const getPluginPackageJsonPath = (): string => {
-	// Get the directory of this file (utils/uri.ts or utils/ in built version)
+	// Get the directory of this file
 	const currentFile = fileURLToPath(import.meta.url)
 	const currentDir = dirname(currentFile)
 	
-	// In built version, files are at root level, so package.json is ../package.json from utils/
-	// This works both in src/ during dev and in node_modules/@fabithub/vite-plugin-ci4/ after install
-	return join(currentDir, '..', 'package.json')
+	// In the release build, index.js and package.json are in the same directory
+	// So package.json is in currentDir, not in parent directory
+	return join(currentDir, 'package.json')
 }
 
 export const addSlash = (path: string): string => path.replace(/\/?$/, '/')
