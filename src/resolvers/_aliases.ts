@@ -1,5 +1,5 @@
 import { appConfig } from '@config/constant'
-/* eslint-disable indent */
+ 
 import type { AliasOptions, UserConfig } from 'vite'
 
 export const _resolveAliases = (config: UserConfig): AliasOptions =>

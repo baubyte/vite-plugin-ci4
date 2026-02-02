@@ -18,7 +18,7 @@ describe('URI Helper', () => {
 			const notAddressInfo = 123
 			const isAddressInfo: IsAddressInfo = (x): x is AddressInfo => typeof x === 'object'
 
-			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+			 
 			// @ts-expect-error
 			const result = isAddressInfo(notAddressInfo)
 
@@ -29,14 +29,14 @@ describe('URI Helper', () => {
 	describe('isIpv6', () => {
 		it('should return true for IPv6 addresses', () => {
 			expect(isIpv6({ address: '::1', port: 8080, family: 'IPv6' })).toBeTrue()
-			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+			 
 			// @ts-expect-error
 			expect(isIpv6({ address: '::1', family: 6, port: 8080 })).toBeTrue()
 		})
 
 		it('should return false for IPv4 addresses', () => {
 			expect(isIpv6({ address: '127.0.0.1', family: 'IPv4', port: 8080 })).toBeFalse()
-			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+			 
 			// @ts-expect-error
 			expect(isIpv6({ address: '127.0.0.1', family: 4, port: 8080 })).toBeFalse()
 		})

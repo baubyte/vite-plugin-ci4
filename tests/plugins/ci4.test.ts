@@ -7,7 +7,7 @@ describe('ci4 plugin', () => {
 	})
 
 	describe('returned object', () => {
-		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+		 
 		// @ts-expect-error
 		const plugin = ci4({})
 

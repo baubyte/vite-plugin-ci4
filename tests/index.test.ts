@@ -5,11 +5,11 @@ import type { Ci4Plugin } from 'src/types'
 
 describe('@baubyte/vite-plugin-ci4', () => {
 	it('handles missing configuration', () => {
-		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+		 
 		// @ts-expect-error
 		expect(() => ci4()).toThrow('@baubyte/vite-plugin-ci4: missing configuration.')
 
-		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+		 
 		// @ts-expect-error
 		expect(() => ci4({})).toThrow(
 			"@baubyte/vite-plugin-ci4: missing configuration for 'input'."
@@ -180,7 +180,7 @@ describe('@baubyte/vite-plugin-ci4', () => {
 	it('provides an @components alias by default', () => {
 		const plugin = ci4('resources/js/app.js') as Ci4Plugin[]
 		const config = plugin[0].config({}, { command: 'build', mode: 'development' })
-		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+		 
 		// @ts-expect-error
 		expect(config.resolve?.alias?.['@components']).toBe('/resources/components')
 	})
@@ -189,7 +189,7 @@ describe('@baubyte/vite-plugin-ci4', () => {
 		const plugin = ci4('resources/js/app.js') as Ci4Plugin[]
 		const config = plugin[0].config({}, { command: 'build', mode: 'development' })
 
-		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+		 
 		// @ts-expect-error
 		expect(config.resolve?.alias?.['@contexts']).toBe('/resources/contexts')
 	})
@@ -198,7 +198,7 @@ describe('@baubyte/vite-plugin-ci4', () => {
 		const plugin = ci4('resources/js/app.js') as Ci4Plugin[]
 		const config = plugin[0].config({}, { command: 'build', mode: 'development' })
 
-		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+		 
 		// @ts-expect-error
 		expect(config.resolve?.alias?.['@hooks']).toBe('/resources/hooks')
 	})
@@ -207,7 +207,7 @@ describe('@baubyte/vite-plugin-ci4', () => {
 		const plugin = ci4('resources/js/app.js') as Ci4Plugin[]
 		const config = plugin[0].config({}, { command: 'build', mode: 'development' })
 
-		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+		 
 		// @ts-expect-error
 		expect(config.resolve?.alias?.['@layouts']).toBe('/resources/layouts')
 	})
@@ -216,7 +216,7 @@ describe('@baubyte/vite-plugin-ci4', () => {
 		const plugin = ci4('resources/js/app.js') as Ci4Plugin[]
 		const config = plugin[0].config({}, { command: 'build', mode: 'development' })
 
-		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+		 
 		// @ts-expect-error
 		expect(config.resolve?.alias?.['@styles']).toBe('/resources/styles')
 	})
@@ -225,7 +225,7 @@ describe('@baubyte/vite-plugin-ci4', () => {
 		const plugin = ci4('resources/js/app.js') as Ci4Plugin[]
 		const config = plugin[0].config({}, { command: 'build', mode: 'development' })
 
-		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+		 
 		// @ts-expect-error
 		expect(config.resolve?.alias?.['@utils']).toBe('/resources/utils')
 	})
@@ -238,7 +238,7 @@ describe('@baubyte/vite-plugin-ci4', () => {
 			{ command: 'build', mode: 'development' }
 		)
 
-		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+		 
 		// @ts-expect-error
 		expect(config.resolve?.alias?.['@']).toBe('/somewhere/else')
 	})
@@ -251,7 +251,7 @@ describe('@baubyte/vite-plugin-ci4', () => {
 			{ command: 'build', mode: 'development' }
 		)
 
-		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+		 
 		// @ts-expect-error
 		expect(config.resolve?.alias?.['@components']).toBe('/somewhere/else')
 	})
@@ -300,7 +300,7 @@ describe('@baubyte/vite-plugin-ci4', () => {
 	})
 
 	it('prevents the Inertia helpers from being externalized', () => {
-		/* eslint-disable @typescript-eslint/ban-ts-comment */
+		 
 		const plugin = ci4('resources/js/app.js') as Ci4Plugin[]
 
 		const noSsrConfig = plugin[0].config(

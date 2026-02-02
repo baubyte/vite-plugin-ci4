@@ -25,7 +25,7 @@ export const resolveFullReloadConfig = ({
 	return (config as RefreshConfig[]).flatMap((c) => {
 		const plugin = fullReload(c.paths, c.config)
 
-		/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */
+		 
 		/** @ts-ignore */
 		plugin.__ci4_plugin_config = c
 

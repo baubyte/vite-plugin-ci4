@@ -1,4 +1,4 @@
-/* eslint-disable indent */
+ 
 import { appConfig } from '@config/constant'
 
 export enum Errors {
