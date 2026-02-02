@@ -30,23 +30,31 @@
   "engines": {
     "node": "^18.0.0 || >=20.0.0"
   },
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "main": "./index.js",
+  "module": "./index.js",
+  "types": "./index.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "default": "./dist/index.js"
+      "types": "./index.d.ts",
+      "import": "./index.js",
+      "default": "./index.js"
     },
     "./resolvers": {
-      "types": "./dist/resolvers/pageComponent.d.ts",
-      "import": "./dist/resolvers/pageComponent.js",
-      "default": "./dist/resolvers/pageComponent.js"
+      "types": "./resolvers/pageComponent.d.ts",
+      "import": "./resolvers/pageComponent.js",
+      "default": "./resolvers/pageComponent.js"
     }
   },
   "files": [
-    "dist"
+    "*.js",
+    "*.d.ts",
+    "*.html",
+    "config",
+    "handlers",
+    "plugins",
+    "resolvers",
+    "types",
+    "utils"
   ],
   "scripts": {
     "test": "vitest run",
