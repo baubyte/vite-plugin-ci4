@@ -1,4 +1,4 @@
-# @fabithub/vite-plugin-ci4
+# @baubyte/vite-plugin-ci4
 
 > Vite Plugin for CodeIgniter 4 integration. Inspired by Laravel's Vite Plugin.
 
@@ -8,8 +8,8 @@
 [![GitHub Repo stars](https://img.shields.io/github/stars/baubyte/vite-plugin-ci4?style=for-the-badge&logo=github)](https://github.com/baubyte/vite-plugin-ci4)
 [![GitHub forks](https://img.shields.io/github/forks/baubyte/vite-plugin-ci4?style=for-the-badge&logo=github&color=pink)](https://github.com/baubyte/vite-plugin-ci4)
 [![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/baubyte/vite-plugin-ci4/tests.yml?style=for-the-badge&logo=github%20actions)](https://github.com/baubyte/vite-plugin-ci4/actions/workflows/tests.yml)
-[![GitHub Release](https://img.shields.io/github/v/release/baubyte/vite-plugin-ci4?sort=date&display_name=release&style=for-the-badge)](https://www.npmjs.com/package/@fabithub/vite-plugin-ci4)
-[![NPM Downloads](https://img.shields.io/npm/dy/%40fabithub%2Fvite-plugin-ci4?style=for-the-badge&logo=npm)](https://www.npmjs.com/package/@fabithub/vite-plugin-ci4)
+[![GitHub Release](https://img.shields.io/github/v/release/baubyte/vite-plugin-ci4?sort=date&display_name=release&style=for-the-badge)](https://www.npmjs.com/package/@baubyte/vite-plugin-ci4)
+[![NPM Downloads](https://img.shields.io/npm/dy/%40fabithub%2Fvite-plugin-ci4?style=for-the-badge&logo=npm)](https://www.npmjs.com/package/@baubyte/vite-plugin-ci4)
 ![GitHub License](https://img.shields.io/github/license/fab-it-hub/vite-plugin-ci4?style=for-the-badge&logo=github)
 
 
@@ -69,7 +69,7 @@ In your Vite configuration file (usually `vite.config.js` or `vite.config.ts`), 
 
 ```javascript
 // vite.config.js
-import Ci4Plugin from "@fabithub/vite-plugin-ci4";
+import Ci4Plugin from "@baubyte/vite-plugin-ci4";
 
 export default {
   plugins: [Ci4Plugin("resources/index.js")]
@@ -84,7 +84,7 @@ You can customize the plugin by passing options during initialization:
 
 ```javascript
 // vite.config.js
-import Ci4Plugin from "@fabithub/vite-plugin-ci4";
+import Ci4Plugin from "@baubyte/vite-plugin-ci4";
 
 export default {
   plugins: [
@@ -102,7 +102,7 @@ export default {
 The `hot` file is created and deleted when the vite dev server is run, making it safe to ignore it. You can change the `hot` file path by updating the config `hotFile` (by default it's `public/hot`) and add the path in the `.gitignore`.
 
 ```dockerfile
-# @fabithub/vite-plugin-ci4
+# @baubyte/vite-plugin-ci4
 public/hot
 ```
 
@@ -127,7 +127,7 @@ This plugin includes a resolver function for Inertia.js page components, inspire
 
 ```typescript
 // Import the resolver
-import { resolvePageComponent } from '@fabithub/vite-plugin-ci4/resolvers';
+import { resolvePageComponent } from '@baubyte/vite-plugin-ci4/resolvers';
 
 // Use with Vite's glob import
 const pages = import.meta.glob('./Pages/**/*.tsx');
@@ -146,7 +146,7 @@ const component = await resolvePageComponent(
 
 ```typescript
 import { createInertiaApp } from '@inertiajs/react';
-import { resolvePageComponent } from '@fabithub/vite-plugin-ci4/resolvers';
+import { resolvePageComponent } from '@baubyte/vite-plugin-ci4/resolvers';
 
 createInertiaApp({
   resolve: (name) => resolvePageComponent(
@@ -163,7 +163,7 @@ createInertiaApp({
 
 ```typescript
 import { createInertiaApp } from '@inertiajs/vue3';
-import { resolvePageComponent } from '@fabithub/vite-plugin-ci4/resolvers';
+import { resolvePageComponent } from '@baubyte/vite-plugin-ci4/resolvers';
 import { createApp, h } from 'vue';
 
 createInertiaApp({
@@ -187,7 +187,7 @@ createInertiaApp({
 // vite.config.ts
 import type { UserConfig } from "vite";
 import react from "@vitejs/plugin-react";
-import ci4 from "@fabithub/vite-plugin-ci4";
+import ci4 from "@baubyte/vite-plugin-ci4";
 import { defineConfig, loadEnv } from "vite";
 
 export default defineConfig(({ mode }): UserConfig => {
@@ -208,7 +208,7 @@ export default defineConfig(({ mode }): UserConfig => {
 // vite.config.ts
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-import ci4 from "@fabithub/vite-plugin-ci4";
+import ci4 from "@baubyte/vite-plugin-ci4";
 
 export default defineConfig({
   plugins: [
@@ -244,13 +244,23 @@ export default defineConfig({
 
 ## Credits
 
-This plugin is inspired by [Laravel's vite-plugin](https://github.com/laravel/vite-plugin) by [Laravel](https://laravel.com/).
+This plugin is a maintained fork of [@fabithub/vite-plugin-ci4](https://github.com/fab-it-hub/vite-plugin-ci4) originally created by [Krishna Gujjjar](https://github.com/fab-it-hub).
 
-Special thanks to the original authors and contributors of [@fabithub/vite-plugin-ci4](https://github.com/fab-it-hub/vite-plugin-ci4).
+### Changes in this fork:
+- Migrated from Bun to Node.js for better compatibility
+- Full compatibility with Vite 7.x
+- Improved TypeScript definitions and build process
+- Refactored Inertia.js helpers to resolvers
+- Automated release workflow via GitHub Actions
+- Enhanced documentation and examples
+
+Original inspiration from [Laravel's vite-plugin](https://github.com/laravel/vite-plugin) by [Laravel](https://laravel.com/).
 
 ## License
 
-Released under [MIT](/LICENSE.md) by [@fab-it-hub](https://github.com/fab-it-hub).
+Released under [MIT](/LICENSE.md) by [@baubyte](https://github.com/baubyte).
+
+Original work by [@fab-it-hub](https://github.com/fab-it-hub).
 
 ---
 

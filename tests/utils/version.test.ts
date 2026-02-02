@@ -41,7 +41,7 @@ describe.skip('Version Functions', () => {
 				}))
 
 				expect(async () => await getFrameworkVersion()).toThrow(
-					'CompatibilityError: codeigniter4/framework@1.0.0 is not compatible with @fabithub/vite-plugin-ci4. Use CodeIgniter@4.1.5'
+					'CompatibilityError: codeigniter4/framework@1.0.0 is not compatible with @baubyte/vite-plugin-ci4. Use CodeIgniter@4.1.5'
 				)
 			})
 
@@ -55,7 +55,7 @@ describe.skip('Version Functions', () => {
 				}))
 
 				expect(async () => await getFrameworkVersion()).toThrow(
-					'@fabithub/vite-plugin-ci4: codeigniter4/framework not found in composer.lock.'
+					'@baubyte/vite-plugin-ci4: codeigniter4/framework not found in composer.lock.'
 				)
 			})
 

@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 import { Errors, errorMessages } from '@utils/errors'
 
 describe('Error Messages', () => {
-	const pluginName = '@fabithub/vite-plugin-ci4'
+	const pluginName = '@baubyte/vite-plugin-ci4'
 
 	it('should return an error message for InvalidConfiguration', () => {
 		const message = errorMessages(Errors.InvalidConfiguration)

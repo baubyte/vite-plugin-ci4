@@ -1,6 +1,6 @@
 # Agent Development Guidelines
 
-Essential information for AI agents working in `@fabithub/vite-plugin-ci4` - a TypeScript Vite plugin for CodeIgniter 4 integration.
+Essential information for AI agents working in `@baubyte/vite-plugin-ci4` - a TypeScript Vite plugin for CodeIgniter 4 integration.
 
 **Runtime**: Node.js v18+/v20+ | **Module**: ES Module | **Language**: TypeScript (strict) | **Tools**: Biome + ESLint + Vitest
 
@@ -156,7 +156,7 @@ This plugin is compatible with Vite 7.x. Key changes from previous versions:
 The plugin includes `resolvePageComponent` in `src/resolvers/pageComponent.ts` for dynamic page resolution:
 
 ```typescript
-import { resolvePageComponent } from '@fabithub/vite-plugin-ci4/resolvers'
+import { resolvePageComponent } from '@baubyte/vite-plugin-ci4/resolvers'
 
 const component = await resolvePageComponent('Home/Index', import.meta.glob('./Pages/**/*.tsx'))
 ```

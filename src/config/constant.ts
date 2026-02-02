@@ -25,7 +25,7 @@ export const appConfig: AppConfig = {
 
 	// Plugin
 	plugin: 'ci4',
-	pluginName: '@fabithub/vite-plugin-ci4',
+	pluginName: '@baubyte/vite-plugin-ci4',
 
 	// Framework
 	frameworkName: 'CodeIgniter',

@@ -1,6 +1,6 @@
 {
-  "name": "@fabithub/vite-plugin-ci4",
-  "version": "1.2.0",
+  "name": "@baubyte/vite-plugin-ci4",
+  "version": "2.0.0",
   "description": "Vite Plugin for CodeIgniter 4 integration.",
   "keywords": [
     "vite",
@@ -20,6 +20,12 @@
     "email": "krishnagujjjar@gmail.com",
     "url": "https://fabithub.com"
   },
+  "contributors": [
+    {
+      "name": "Baubyte",
+      "url": "https://github.com/baubyte"
+    }
+  ],
   "type": "module",
   "engines": {
     "node": "^18.0.0 || >=20.0.0"

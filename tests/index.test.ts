@@ -3,16 +3,16 @@ import { describe, expect, it } from 'vitest'
 import ci4 from 'src'
 import type { Ci4Plugin } from 'src/types'
 
-describe('@fabithub/vite-plugin-ci4', () => {
+describe('@baubyte/vite-plugin-ci4', () => {
 	it('handles missing configuration', () => {
 		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 		// @ts-expect-error
-		expect(() => ci4()).toThrow('@fabithub/vite-plugin-ci4: missing configuration.')
+		expect(() => ci4()).toThrow('@baubyte/vite-plugin-ci4: missing configuration.')
 
 		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 		// @ts-expect-error
 		expect(() => ci4({})).toThrow(
-			"@fabithub/vite-plugin-ci4: missing configuration for 'input'."
+			"@baubyte/vite-plugin-ci4: missing configuration for 'input'."
 		)
 	})
 
@@ -148,13 +148,13 @@ describe('@fabithub/vite-plugin-ci4', () => {
 
 	it('prevents setting an empty publicDirectory', () => {
 		expect(() => ci4({ input: 'resources/js/app.js', publicDirectory: '' })).toThrow(
-			"@fabithub/vite-plugin-ci4: publicDirectory must be a subdirectory. E.g. 'public'."
+			"@baubyte/vite-plugin-ci4: publicDirectory must be a subdirectory. E.g. 'public'."
 		)
 	})
 
 	it('prevents setting an empty buildDirectory', () => {
 		expect(() => ci4({ input: 'resources/js/app.js', buildDirectory: '' })).toThrow(
-			"@fabithub/vite-plugin-ci4: buildDirectory must be a subdirectory. E.g. 'build'."
+			"@baubyte/vite-plugin-ci4: buildDirectory must be a subdirectory. E.g. 'build'."
 		)
 	})
 
@@ -307,7 +307,7 @@ describe('@fabithub/vite-plugin-ci4', () => {
 			{ build: { ssr: true } },
 			{ command: 'build', mode: 'production' }
 		)
-		expect(noSsrConfig.ssr?.noExternal).toEqual(['@fabithub/vite-plugin-ci4'])
+		expect(noSsrConfig.ssr?.noExternal).toEqual(['@baubyte/vite-plugin-ci4'])
 
 		const nothingExternalConfig = plugin[0].config(
 			{ ssr: { noExternal: true }, build: { ssr: true } },
@@ -319,13 +319,13 @@ describe('@fabithub/vite-plugin-ci4', () => {
 			{ ssr: { noExternal: ['foo'] }, build: { ssr: true } },
 			{ command: 'build', mode: 'production' }
 		)
-		expect(arrayNoExternalConfig.ssr?.noExternal).toEqual(['foo', '@fabithub/vite-plugin-ci4'])
+		expect(arrayNoExternalConfig.ssr?.noExternal).toEqual(['foo', '@baubyte/vite-plugin-ci4'])
 
 		const stringNoExternalConfig = plugin[0].config(
 			{ ssr: { noExternal: 'foo' }, build: { ssr: true } },
 			{ command: 'build', mode: 'production' }
 		)
-		expect(stringNoExternalConfig.ssr?.noExternal).toEqual(['foo', '@fabithub/vite-plugin-ci4'])
+		expect(stringNoExternalConfig.ssr?.noExternal).toEqual(['foo', '@baubyte/vite-plugin-ci4'])
 	})
 
 	it('does not configure full reload when configuration it not an object', () => {
